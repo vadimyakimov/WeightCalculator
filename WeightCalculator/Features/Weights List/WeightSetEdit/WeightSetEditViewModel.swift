@@ -40,9 +40,7 @@ class WeightSetEditViewModel: ObservableObject {
     init(weightSet: Binding<WeightSet>) {
         self._originalSet = weightSet
         self.barbells = weightSet.wrappedValue.barbells
-        self.plates = weightSet.wrappedValue.plates
-        
-        
+        self.plates = weightSet.wrappedValue.plates    
     }
     
     // MARK: - Flow funcs

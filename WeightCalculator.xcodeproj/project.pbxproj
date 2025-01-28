@@ -15,6 +15,8 @@
 		DD38C6972D37C65E0055D418 /* WeightSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD38C6962D37C65E0055D418 /* WeightSet.swift */; };
 		DD38C69A2D3804C80055D418 /* WeightSetEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD38C6992D3804C80055D418 /* WeightSetEditView.swift */; };
 		DD3A1D2B2D4909BE00C3FD77 /* WeightsHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D2A2D4909BE00C3FD77 /* WeightsHStack.swift */; };
+		DD3A1D512D49294A00C3FD77 /* WeightFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */; };
+		DD3A1D542D492A6800C3FD77 /* WeightFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */; };
 		DD3AA3452D473D1400AD5B84 /* WeightSetEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AA3442D473D1000AD5B84 /* WeightSetEditViewModel.swift */; };
 		DD3AA3482D47B65900AD5B84 /* KeyboardToolbar in Frameworks */ = {isa = PBXBuildFile; productRef = DD3AA3472D47B65900AD5B84 /* KeyboardToolbar */; };
 		DD7D45C92D4548D90071A99D /* WeightSetEditSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D45C82D4548D50071A99D /* WeightSetEditSectionView.swift */; };
@@ -32,6 +34,8 @@
 		DD38C6962D37C65E0055D418 /* WeightSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSet.swift; sourceTree = "<group>"; };
 		DD38C6992D3804C80055D418 /* WeightSetEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditView.swift; sourceTree = "<group>"; };
 		DD3A1D2A2D4909BE00C3FD77 /* WeightsHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightsHStack.swift; sourceTree = "<group>"; };
+		DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightFinderView.swift; sourceTree = "<group>"; };
+		DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightFinderViewModel.swift; sourceTree = "<group>"; };
 		DD3AA3442D473D1000AD5B84 /* WeightSetEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditViewModel.swift; sourceTree = "<group>"; };
 		DD7D45C82D4548D50071A99D /* WeightSetEditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditSectionView.swift; sourceTree = "<group>"; };
 		DDD8C7A52D4122C800B068FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,12 +120,30 @@
 			path = WeightSetEdit;
 			sourceTree = "<group>";
 		};
+		DD3A1D4F2D49291700C3FD77 /* Weights List */ = {
+			isa = PBXGroup;
+			children = (
+				DD38C68C2D37BC320055D418 /* WeightSetsList */,
+				DD38C6982D3804B70055D418 /* WeightSetEdit */,
+			);
+			path = "Weights List";
+			sourceTree = "<group>";
+		};
+		DD3A1D522D49295800C3FD77 /* WeightFinder */ = {
+			isa = PBXGroup;
+			children = (
+				DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */,
+				DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */,
+			);
+			path = WeightFinder;
+			sourceTree = "<group>";
+		};
 		DD6589C52D3EA83100305C8E /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				DDD8C7A62D4122C800B068FE /* ContentView */,
-				DD38C68C2D37BC320055D418 /* WeightSetsList */,
-				DD38C6982D3804B70055D418 /* WeightSetEdit */,
+				DD3A1D522D49295800C3FD77 /* WeightFinder */,
+				DD3A1D4F2D49291700C3FD77 /* Weights List */,
 				DD3A1D2A2D4909BE00C3FD77 /* WeightsHStack.swift */,
 			);
 			path = Features;
@@ -225,6 +247,7 @@
 			files = (
 				DD38C69A2D3804C80055D418 /* WeightSetEditView.swift in Sources */,
 				DD3A1D2B2D4909BE00C3FD77 /* WeightsHStack.swift in Sources */,
+				DD3A1D542D492A6800C3FD77 /* WeightFinderViewModel.swift in Sources */,
 				DDD8C7A72D4122C800B068FE /* ContentView.swift in Sources */,
 				DDD8C7A92D41230200B068FE /* ContentViewModel.swift in Sources */,
 				DD3AA3452D473D1400AD5B84 /* WeightSetEditViewModel.swift in Sources */,
@@ -233,6 +256,7 @@
 				DD38C6972D37C65E0055D418 /* WeightSet.swift in Sources */,
 				DD38C6952D37BC320055D418 /* WeightCalculatorApp.swift in Sources */,
 				DDD8C7AB2D41248500B068FE /* WeightSetsListViewModel.swift in Sources */,
+				DD3A1D512D49294A00C3FD77 /* WeightFinderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
