@@ -6,23 +6,50 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DD138ABE2D32B4AE002A7B2D /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = DD138ABD2D32B4AE002A7B2D /* WrappingHStack */; };
+		DD38C6912D37BC320055D418 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD38C6892D37BC320055D418 /* Preview Assets.xcassets */; };
+		DD38C6922D37BC320055D418 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD38C68D2D37BC320055D418 /* Assets.xcassets */; };
+		DD38C6932D37BC320055D418 /* WeightSetsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD38C68B2D37BC320055D418 /* WeightSetsListView.swift */; };
+		DD38C6952D37BC320055D418 /* WeightCalculatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD38C68F2D37BC320055D418 /* WeightCalculatorApp.swift */; };
+		DD38C6972D37C65E0055D418 /* WeightSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD38C6962D37C65E0055D418 /* WeightSet.swift */; };
+		DD38C69A2D3804C80055D418 /* WeightSetEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD38C6992D3804C80055D418 /* WeightSetEditView.swift */; };
+		DD3A1D2B2D4909BE00C3FD77 /* WeightsHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D2A2D4909BE00C3FD77 /* WeightsHStack.swift */; };
+		DD3A1D512D49294A00C3FD77 /* WeightFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */; };
+		DD3A1D542D492A6800C3FD77 /* WeightFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */; };
+		DD3AA3452D473D1400AD5B84 /* WeightSetEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AA3442D473D1000AD5B84 /* WeightSetEditViewModel.swift */; };
+		DD3AA3482D47B65900AD5B84 /* KeyboardToolbar in Frameworks */ = {isa = PBXBuildFile; productRef = DD3AA3472D47B65900AD5B84 /* KeyboardToolbar */; };
+		DD7D45C92D4548D90071A99D /* WeightSetEditSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7D45C82D4548D50071A99D /* WeightSetEditSectionView.swift */; };
+		DDD8C7A72D4122C800B068FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD8C7A52D4122C800B068FE /* ContentView.swift */; };
+		DDD8C7A92D41230200B068FE /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD8C7A82D4122F700B068FE /* ContentViewModel.swift */; };
+		DDD8C7AB2D41248500B068FE /* WeightSetsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD8C7AA2D41247C00B068FE /* WeightSetsListViewModel.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DD138AAB2D328E40002A7B2D /* WeightCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeightCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD38C6892D37BC320055D418 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DD38C68B2D37BC320055D418 /* WeightSetsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetsListView.swift; sourceTree = "<group>"; };
+		DD38C68D2D37BC320055D418 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DD38C68F2D37BC320055D418 /* WeightCalculatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCalculatorApp.swift; sourceTree = "<group>"; };
+		DD38C6962D37C65E0055D418 /* WeightSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSet.swift; sourceTree = "<group>"; };
+		DD38C6992D3804C80055D418 /* WeightSetEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditView.swift; sourceTree = "<group>"; };
+		DD3A1D2A2D4909BE00C3FD77 /* WeightsHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightsHStack.swift; sourceTree = "<group>"; };
+		DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightFinderView.swift; sourceTree = "<group>"; };
+		DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightFinderViewModel.swift; sourceTree = "<group>"; };
+		DD3AA3442D473D1000AD5B84 /* WeightSetEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditViewModel.swift; sourceTree = "<group>"; };
+		DD7D45C82D4548D50071A99D /* WeightSetEditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditSectionView.swift; sourceTree = "<group>"; };
+		DDD8C7A52D4122C800B068FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DDD8C7A82D4122F700B068FE /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		DDD8C7AA2D41247C00B068FE /* WeightSetsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetsListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		DD138AAD2D328E40002A7B2D /* WeightCalculator */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WeightCalculator;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DD138AA82D328E40002A7B2D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD138ABE2D32B4AE002A7B2D /* WrappingHStack in Frameworks */,
+				DD3AA3482D47B65900AD5B84 /* KeyboardToolbar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +59,7 @@
 		DD138AA22D328E40002A7B2D = {
 			isa = PBXGroup;
 			children = (
-				DD138AAD2D328E40002A7B2D /* WeightCalculator */,
+				DD38C6902D37BC320055D418 /* WeightCalculator */,
 				DD138AAC2D328E40002A7B2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +70,99 @@
 				DD138AAB2D328E40002A7B2D /* WeightCalculator.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DD38C6882D37BC320055D418 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD38C6962D37C65E0055D418 /* WeightSet.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DD38C68A2D37BC320055D418 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DD38C6892D37BC320055D418 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DD38C68C2D37BC320055D418 /* WeightSetsList */ = {
+			isa = PBXGroup;
+			children = (
+				DDD8C7AA2D41247C00B068FE /* WeightSetsListViewModel.swift */,
+				DD38C68B2D37BC320055D418 /* WeightSetsListView.swift */,
+			);
+			path = WeightSetsList;
+			sourceTree = "<group>";
+		};
+		DD38C6902D37BC320055D418 /* WeightCalculator */ = {
+			isa = PBXGroup;
+			children = (
+				DD38C68A2D37BC320055D418 /* Preview Content */,
+				DD8DB9752D4687FB00DEC049 /* Helpers */,
+				DD38C6882D37BC320055D418 /* Model */,
+				DD6589C52D3EA83100305C8E /* Features */,
+				DD38C68D2D37BC320055D418 /* Assets.xcassets */,
+				DD38C68F2D37BC320055D418 /* WeightCalculatorApp.swift */,
+			);
+			path = WeightCalculator;
+			sourceTree = "<group>";
+		};
+		DD38C6982D3804B70055D418 /* WeightSetEdit */ = {
+			isa = PBXGroup;
+			children = (
+				DD3AA3442D473D1000AD5B84 /* WeightSetEditViewModel.swift */,
+				DD38C6992D3804C80055D418 /* WeightSetEditView.swift */,
+				DD7D45C82D4548D50071A99D /* WeightSetEditSectionView.swift */,
+			);
+			path = WeightSetEdit;
+			sourceTree = "<group>";
+		};
+		DD3A1D4F2D49291700C3FD77 /* Weights List */ = {
+			isa = PBXGroup;
+			children = (
+				DD38C68C2D37BC320055D418 /* WeightSetsList */,
+				DD38C6982D3804B70055D418 /* WeightSetEdit */,
+			);
+			path = "Weights List";
+			sourceTree = "<group>";
+		};
+		DD3A1D522D49295800C3FD77 /* WeightFinder */ = {
+			isa = PBXGroup;
+			children = (
+				DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */,
+				DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */,
+			);
+			path = WeightFinder;
+			sourceTree = "<group>";
+		};
+		DD6589C52D3EA83100305C8E /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				DDD8C7A62D4122C800B068FE /* ContentView */,
+				DD3A1D522D49295800C3FD77 /* WeightFinder */,
+				DD3A1D4F2D49291700C3FD77 /* Weights List */,
+				DD3A1D2A2D4909BE00C3FD77 /* WeightsHStack.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		DD8DB9752D4687FB00DEC049 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DDD8C7A62D4122C800B068FE /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				DDD8C7A82D4122F700B068FE /* ContentViewModel.swift */,
+				DDD8C7A52D4122C800B068FE /* ContentView.swift */,
+			);
+			path = ContentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,11 +180,10 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				DD138AAD2D328E40002A7B2D /* WeightCalculator */,
-			);
 			name = WeightCalculator;
 			packageProductDependencies = (
+				DD138ABD2D32B4AE002A7B2D /* WrappingHStack */,
+				DD3AA3472D47B65900AD5B84 /* KeyboardToolbar */,
 			);
 			productName = WeightCalculator;
 			productReference = DD138AAB2D328E40002A7B2D /* WeightCalculator.app */;
@@ -94,6 +213,11 @@
 			);
 			mainGroup = DD138AA22D328E40002A7B2D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DD138ABC2D32B4AE002A7B2D /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+				DD6589C62D3EABD300305C8E /* XCRemoteSwiftPackageReference "realm-swift" */,
+				DD3AA3462D47B65900AD5B84 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD138AAC2D328E40002A7B2D /* Products */;
 			projectDirPath = "";
@@ -109,6 +233,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD38C6912D37BC320055D418 /* Preview Assets.xcassets in Resources */,
+				DD38C6922D37BC320055D418 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +245,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD38C69A2D3804C80055D418 /* WeightSetEditView.swift in Sources */,
+				DD3A1D2B2D4909BE00C3FD77 /* WeightsHStack.swift in Sources */,
+				DD3A1D542D492A6800C3FD77 /* WeightFinderViewModel.swift in Sources */,
+				DDD8C7A72D4122C800B068FE /* ContentView.swift in Sources */,
+				DDD8C7A92D41230200B068FE /* ContentViewModel.swift in Sources */,
+				DD3AA3452D473D1400AD5B84 /* WeightSetEditViewModel.swift in Sources */,
+				DD38C6932D37BC320055D418 /* WeightSetsListView.swift in Sources */,
+				DD7D45C92D4548D90071A99D /* WeightSetEditSectionView.swift in Sources */,
+				DD38C6972D37C65E0055D418 /* WeightSet.swift in Sources */,
+				DD38C6952D37BC320055D418 /* WeightCalculatorApp.swift in Sources */,
+				DDD8C7AB2D41248500B068FE /* WeightSetsListViewModel.swift in Sources */,
+				DD3A1D512D49294A00C3FD77 /* WeightFinderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,16 +398,17 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vadimyakimov.WeightCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -290,16 +429,17 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vadimyakimov.WeightCalculator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -326,6 +466,46 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD138ABC2D32B4AE002A7B2D /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.11;
+			};
+		};
+		DD3AA3462D47B65900AD5B84 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cameronshemilt/KeyboardToolbar";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
+		DD6589C62D3EABD300305C8E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD138ABD2D32B4AE002A7B2D /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD138ABC2D32B4AE002A7B2D /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
+		};
+		DD3AA3472D47B65900AD5B84 /* KeyboardToolbar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD3AA3462D47B65900AD5B84 /* XCRemoteSwiftPackageReference "KeyboardToolbar" */;
+			productName = KeyboardToolbar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD138AA32D328E40002A7B2D /* Project object */;
 }
