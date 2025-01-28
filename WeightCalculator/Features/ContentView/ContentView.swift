@@ -19,32 +19,14 @@ struct ContentView: View {
             let viewModel = self.viewModel.createWeightSetsListViewModel()
             WeightSetsListView(viewModel: viewModel)
                 .tabItem {
-                    Label("First", systemImage: "heart.fill")
+                    Label("Weights List", systemImage: "heart.fill")
                 }
             
-            
-            VStack {
-                List(self.viewModel.weightSets) { set in
-                    Section {
-                        ForEach(set.barbells) { weight in
-                            HStack {
-                                Text("\(weight.value)")
-                            }
-                        }
-                        ForEach(set.plates) { weight in
-                            HStack {
-                                Text("\(weight.value)")
-                            }
-                        }
-                    } header: {
-                        Text("\(set.id)")
-                    }
-
-                }
-            }
+            WeightFinderView()
                 .tabItem {
-                    Label("Second", systemImage: "house.fill")
+                    Label("Weights Finder", systemImage: "house.fill")
                 }
+            
 
             Text("Second Tab Content")
                 .tabItem {

@@ -16,16 +16,12 @@ class WeightSet: Identifiable, ObservableObject {
     init(barbells: [WeightUnit] = [], plates: [WeightUnit] = []) {
         self.barbells = barbells
         self.plates = plates
-//        self.sort()
+        self.sort()
     }
     
     func sort() {
-//        self.barbells = self.barbells.sorted(by: ({ $0.value > $1.value }))
-//        self.plates = self.plates.sorted(by: ({ $0.value > $1.value }))
-//        self.barbells.sort(by: ({ $0.value > $1.value }))
-//        self.plates.sort(by: ({ $0.value > $1.value }))
-        self.barbells.sort()
-        self.plates.sort()
+        self.barbells.sort(by: > )
+        self.plates.sort(by: > )
     }
 }
 
