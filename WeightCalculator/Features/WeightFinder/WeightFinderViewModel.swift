@@ -5,11 +5,15 @@
 //  Created by Вадим on 28.01.2025.
 //
 
-class WeightFinderViewModel {
+import SwiftUI
+
+class WeightFinderViewModel: ObservableObject {
     
     // MARK: - Properties
     
     private let weightSet: WeightSet
+    
+    @Published var weightVariants: [WeightSet]?
     
     // MARK: - Initializers
     
@@ -19,8 +23,11 @@ class WeightFinderViewModel {
     
     // MARK: - Flow funcs
     
-    func findRequiredWeightSet(for requiredWeight: Double?) -> [WeightSet]? {
-        guard let requiredWeight, requiredWeight > 0 else { return nil }
+    func findRequiredWeightSet(for requiredWeight: Double?) {
+        guard let requiredWeight, requiredWeight > 0 else {
+            self.weightVariants = nil
+            return
+        }
         
         let barbells = self.weightSet.barbells.map({ $0.value })
         let plates = self.weightSet.plates.map({ $0.value })
@@ -40,8 +47,7 @@ class WeightFinderViewModel {
             }
         }
         
-        guard !weightVariants.isEmpty else { return nil }
-        return weightVariants
+        self.weightVariants = weightVariants
     }
     
     private func findRequiredPlates(for requiredWeight: Double, weightSet: [Double]) -> [[Double]]? {
@@ -49,11 +55,12 @@ class WeightFinderViewModel {
         
         var weightSet = weightSet
         var weightVariants: [[Double]] = []
+        let epsilon = 1e-10
         
         for weight in weightSet {
             weightSet.removeFirst()
             
-            if weight == requiredWeight {
+            if abs(weight - requiredWeight) < epsilon {
                 guard !weightVariants.contains([weight]) else { continue } // Check if there is the same variant
                 weightVariants.append([weight])
             } else if weight < requiredWeight {
