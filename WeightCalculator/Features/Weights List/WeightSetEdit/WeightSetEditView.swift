@@ -25,21 +25,24 @@ struct WeightSetEditView: View {
     // MARK: - Body
     
     var body: some View {
-        List {
-            WeightSetEditSectionView(weights: self.$viewModel.barbells, title: "Barbells",
-                                     focusedField: self._focusedField,
-                                     newWeightFieldID: self.viewModel.newBarbellFieldID)
-            WeightSetEditSectionView(weights: self.$viewModel.plates, title: "Plates",
-                                     focusedField: self._focusedField,
-                                     newWeightFieldID: self.viewModel.newPlateFieldID)
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                self.navigationKeyboardToolbar()
+        
+        NavigationView {
+            List {
+                WeightSetEditSectionView(weights: self.$viewModel.barbells, title: "Barbells",
+                                         focusedField: self._focusedField,
+                                         newWeightFieldID: self.viewModel.newBarbellFieldID)
+                WeightSetEditSectionView(weights: self.$viewModel.plates, title: "Plates",
+                                         focusedField: self._focusedField,
+                                         newWeightFieldID: self.viewModel.newPlateFieldID)
             }
-        }
-        .onDisappear {
-            self.viewModel.saveChanges()
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    self.navigationKeyboardToolbar()
+                }
+            }
+            .onDisappear {
+                self.viewModel.saveChanges()
+            }
         }
     }
     

@@ -31,11 +31,14 @@ struct WeightSetsListView: View {
 
 #Preview {
     let weightSets: Published<[WeightSet]> = Published(initialValue: [
-        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
+        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
+        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
+        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
+        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
     ])
-//    let weightSets: Binding<[WeightSet]> = .constant([
-//        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
-//    ])
+    //    let weightSets: Binding<[WeightSet]> = .constant([
+    //        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
+    //    ])
     let viewModel = WeightSetsListViewModel(weightSets: weightSets)
     WeightSetsListView(viewModel: viewModel)
 }
