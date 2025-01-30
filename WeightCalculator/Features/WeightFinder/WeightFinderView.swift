@@ -14,6 +14,7 @@ struct WeightFinderView: View {
     @State var requiredWeight: Double? 
     
     @State private var scrollViewContentSize: CGSize = .zero
+    @FocusState var isFocused: Bool
     
     var body: some View {
         
@@ -60,6 +61,7 @@ struct WeightFinderView: View {
                 HStack {
                     TextField("Enter the required weight", value: self.$requiredWeight, format: .number)
                         .keyboardType(.decimalPad)
+                        .focused(self.$isFocused)
                         .frame(height: 40)
                         .padding(.horizontal, 16)
                         .background(Color(uiColor: .secondarySystemGroupedBackground))
@@ -70,7 +72,13 @@ struct WeightFinderView: View {
                         )
                     
                     Button("Find") {
-                        self.viewModel.findRequiredWeightSet(for: self.requiredWeight)
+                        self.isFocused = false
+                        Task {
+                            withAnimation {
+                                self.viewModel.findRequiredWeightSet(for: self.requiredWeight)
+                                
+                            }
+                        }
                     }
                     .frame(height: 40)
                     .padding(.horizontal, 16)
@@ -83,6 +91,18 @@ struct WeightFinderView: View {
                 
             }
             .background(Color(uiColor: .systemGroupedBackground))
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button {
+                        self.isFocused = false
+                    } label: {
+                        Text("Done")
+                            .fontWeight(.semibold)
+                    }
+
+                }
+            }
         }
     }
 }
