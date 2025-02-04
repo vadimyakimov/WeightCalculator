@@ -29,8 +29,8 @@ class WeightFinderViewModel: ObservableObject {
             return
         }
         
-        let barbells = self.weightSet.barbells.map({ $0.value })
-        let plates = self.weightSet.plates.map({ $0.value })
+        let barbells = Array(self.weightSet.barbells).map({ $0.value })
+        let plates = Array(self.weightSet.plates).map({ $0.value })
         
         var weightVariants: [WeightSet] = []
         
@@ -82,4 +82,5 @@ class WeightFinderViewModel: ObservableObject {
     
     
 }
+
 

@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 @main
-struct WeightCalculatorApp: App {
+struct WeightCalculatorApp: SwiftUI.App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

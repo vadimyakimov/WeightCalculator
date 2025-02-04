@@ -6,36 +6,82 @@
 //
 
 import Foundation
+import RealmSwift
 
-class WeightSet: Identifiable, ObservableObject {
+class WeightSet: Object, ObjectKeyIdentifiable {
     
-    let id = UUID()
-    @Published var barbells: [WeightUnit]
-    @Published var plates: [WeightUnit]
+    @Persisted(primaryKey: true) var id: UUID = UUID()
+    @Persisted var barbells: List<WeightUnit>
+    @Persisted var plates: List<WeightUnit>
     
-    init(barbells: [WeightUnit] = [], plates: [WeightUnit] = []) {
-        self.barbells = barbells
-        self.plates = plates
+    var isEmpty: Bool {
+        self.barbells.isEmpty && self.plates.isEmpty
+    }
+    
+    convenience init(barbells: [WeightUnit] = [], plates: [WeightUnit] = []) {
+        self.init()
+        self.barbells.append(objectsIn: barbells)
+        self.plates.append(objectsIn: plates)
         self.sort()
+    }
+    
+    override class func primaryKey() -> String? {
+        "id"
     }
     
     func sort() {
         self.barbells.sort(by: > )
         self.plates.sort(by: > )
     }
+    
+    func updateWeightUnits(barbells: [WeightUnit], plates: [WeightUnit]) {
+        self.update(self.barbells, with: barbells)
+        self.update(self.plates, with: plates)
+        
+//        if self.isEmpty {
+//            try? self.realm?.write {
+//                self.realm?.delete(self)
+//            }
+//        }
+    }
+    
+    private func update(_ originalList: List<WeightUnit>, with newArray: [WeightUnit]) {
+        guard let realm = self.realm else { return }
+        
+        let oldArray = Array(originalList)
+        
+        if newArray != oldArray {
+            try? realm.write {
+                let newSet = Set(newArray.map { $0.id })
+                let objectsToDelete = originalList.filter { !newSet.contains($0.id) }
+                realm.delete(objectsToDelete)
+                
+                originalList.removeAll()
+                originalList.append(objectsIn: newArray)                
+            }
+        }
+        
+    }
+    
 }
 
-class WeightUnit: Identifiable, ExpressibleByFloatLiteral, Comparable {
+class WeightUnit: Object, ObjectKeyIdentifiable, ExpressibleByFloatLiteral, Comparable {
         
-    let id = UUID()
-    var value: Double
-    
-    required init(floatLiteral value: Double) {
+    @Persisted(primaryKey: true) var id: UUID
+    @Persisted var value: Double
+        
+    required convenience init(floatLiteral value: Double) {
+        self.init()
         self.value = value
     }
     
-    init(_ value: Double) {
+    convenience init(_ value: Double) {
+        self.init()
         self.value = value
+    }
+    
+    override class func primaryKey() -> String? {
+        "id"
     }
     
     static func < (lhs: WeightUnit, rhs: WeightUnit) -> Bool {

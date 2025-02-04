@@ -16,11 +16,16 @@ struct ContentView: View {
         case list
     }
     
-    @StateObject private var viewModel = ContentViewModel()
-    @State var selectedTab: Tab = .finder
+    var viewModel = ContentViewModel()
+    @State var selectedTab: Tab = .list
+    
+    
     
     var body: some View {
+        
             TabView(selection: self.$selectedTab) {
+                
+                
                 
                 let finderViewModel = self.viewModel.createWeightFinderViewModel()
                 WeightFinderView(viewModel: finderViewModel)
@@ -29,12 +34,13 @@ struct ContentView: View {
                         Label("Weights Finder", systemImage: "house.fill")
                     }
                 
-                
+                /*
                 Text("Second Tab Content")
                     .tag(Tab.summator)
                     .tabItem {
                         Label("Third", systemImage: "star.fill")
                     }
+                 */
                 
                 let listViewModel = self.viewModel.createWeightSetsListViewModel()
                 WeightSetsListView(viewModel: listViewModel)

@@ -28,10 +28,12 @@ struct WeightSetEditView: View {
         
         NavigationView {
             List {
-                WeightSetEditSectionView(weights: self.$viewModel.barbells, title: "Barbells",
+                WeightSetEditSectionView(weights: self.$viewModel.barbells,
+                                         title: "Barbells",
                                          focusedField: self._focusedField,
                                          newWeightFieldID: self.viewModel.newBarbellFieldID)
-                WeightSetEditSectionView(weights: self.$viewModel.plates, title: "Plates",
+                WeightSetEditSectionView(weights: self.$viewModel.plates,
+                                         title: "Plates",
                                          focusedField: self._focusedField,
                                          newWeightFieldID: self.viewModel.newPlateFieldID)
             }
@@ -92,3 +94,4 @@ struct WeightSetEditView: View {
 //        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
 //    ))
 //}
+

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct WeightSetEditSectionView: View {
         
@@ -15,18 +16,18 @@ struct WeightSetEditSectionView: View {
     @FocusState var focusedField: UUID?
     let newWeightFieldID: UUID
     
-    @State var newWeight: Double? = nil    
-    
+    @State private var newWeight: Double? = nil
+        
     var body: some View {
         Section {
                 // Saved weights
-                ForEach(self.$weights) { weight in
+            ForEach(self.$weights) { weight in
                     TextField("Edit", value: weight.value, format: .number)
                         .keyboardType(.decimalPad)
-                        .focused(self.$focusedField, equals: weight.id)
+                        .focused(self.$focusedField, equals: weight.wrappedValue.id)
                 }
                 .onDelete { indexSet in
-                    self.weights.remove(atOffsets: indexSet)
+                    self.weights.remove(atOffsets: indexSet)                    
                 }
                 
                 
@@ -45,8 +46,14 @@ struct WeightSetEditSectionView: View {
         } header: {
             Text(self.title)
         }
-        
-        
     }
+    
+    init(weights: Binding<[WeightUnit]>, title: String, focusedField: FocusState<UUID?>, newWeightFieldID: UUID) {
+        self._weights = weights
+        self.title = title
+        self._focusedField = focusedField
+        self.newWeightFieldID = newWeightFieldID
+    }
+    
 }
 

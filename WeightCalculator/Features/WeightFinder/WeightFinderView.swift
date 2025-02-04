@@ -19,27 +19,10 @@ struct WeightFinderView: View {
     var body: some View {
         
         NavigationView {
-            VStack {
-                
+            VStack { // SPACING AND NO PADDING BELOW
                 if let weightVariants = self.$viewModel.weightVariants.unwrap() {
                     if !weightVariants.isEmpty {
-                        ScrollView {
-                            Spacer(minLength: 16)
-                            ForEach(weightVariants) { weightSet in
-                                WeightsHStack(weightSet: weightSet)
-                                    .padding(.vertical, 4)
-                                    .padding(.horizontal)
-                                    .background(Color(uiColor: .secondarySystemGroupedBackground))
-                                    .clipShape(
-                                        RoundedRectangle(cornerRadius: 12)
-                                    )
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 6)
-                                //Divider()
-                            }
-                            Spacer(minLength: 16)
-                        }
-                        .padding(.bottom, -8)
+                        WeightsList(weightSets: weightVariants)
                         .navigationTitle("Weight Finder")
                         .navigationBarTitleDisplayMode(.large)
                     } else {
@@ -100,7 +83,6 @@ struct WeightFinderView: View {
                         Text("Done")
                             .fontWeight(.semibold)
                     }
-
                 }
             }
         }

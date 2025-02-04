@@ -6,39 +6,58 @@
 //
 
 import SwiftUI
-import WrappingHStack
+//import RealmSwift
+import UIKit
 
 struct WeightSetsListView: View {
     
     @StateObject var viewModel: WeightSetsListViewModel
+//    @State private var isActive = false
+    
+    @State private var editingWeightSet: WeightSet?
     
     var body: some View {
         NavigationView {
-            List(self.$viewModel.weightSets) { weightSet in
-                Section {
-                    NavigationLink {
-                        let viewModel = self.viewModel.createWeightSetEditViewModel(for: weightSet)
-                        WeightSetEditView(viewModel: viewModel)
-                    } label: {
-                        WeightsHStack(weightSet: weightSet)
+            VStack {
+                
+                
+                WeightsList(weightSets: self.$viewModel.weightSets)
+                    .onDelete(self.viewModel.remove)
+                    .onEdit { weightSet in
+//                        self.editingWeightSet = weightSet.wrappedValue
+                        let viewVodel = self.viewModel.createWeightSetEditViewModel(for: weightSet)
+                        WeightSetEditView(viewModel: viewVodel)
                     }
-                }
+                
+                    .navigationTitle("Sets")
+                
+                
             }
         }
+        
+        
     }
+    
+//    init(viewModel: WeightSetsListViewModel, editingWeightSet: WeightSet? = nil) {
+//        self.viewModel = viewModel
+//        self.editingWeightSet = editingWeightSet
+//    }
     
 }
 
-#Preview {
-    let weightSets: Published<[WeightSet]> = Published(initialValue: [
-        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
-        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
-        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
-        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
-    ])
-    //    let weightSets: Binding<[WeightSet]> = .constant([
-    //        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
-    //    ])
-    let viewModel = WeightSetsListViewModel(weightSets: weightSets)
-    WeightSetsListView(viewModel: viewModel)
-}
+/*
+ #Preview {
+ let weightSets: Published<[WeightSet]> = Published(initialValue: [
+ WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
+ WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
+ WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
+ WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]),
+ ])
+ //    let weightSets: Binding<[WeightSet]> = .constant([
+ //        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
+ //    ])
+ let viewModel = WeightSetsListViewModel(weightSets: weightSets)
+ WeightSetsListView(viewModel: viewModel)
+ }
+ */
+
