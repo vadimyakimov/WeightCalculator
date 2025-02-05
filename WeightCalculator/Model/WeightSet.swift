@@ -22,46 +22,46 @@ class WeightSet: Object, ObjectKeyIdentifiable {
         self.init()
         self.barbells.append(objectsIn: barbells)
         self.plates.append(objectsIn: plates)
-        self.sort()
+        self.barbells.sort(by: > )
+        self.plates.sort(by: > )
     }
     
     override class func primaryKey() -> String? {
         "id"
     }
     
-    func sort() {
-        self.barbells.sort(by: > )
-        self.plates.sort(by: > )
-    }
-    
-    func updateWeightUnits(barbells: [WeightUnit], plates: [WeightUnit]) {
-        self.update(self.barbells, with: barbells)
-        self.update(self.plates, with: plates)
-        
-//        if self.isEmpty {
-//            try? self.realm?.write {
-//                self.realm?.delete(self)
+//    func updateWeightUnits(barbells: [WeightUnit], plates: [WeightUnit]) {
+//        if barbells.isEmpty && plates.isEmpty,
+//           let realm = self.realm {
+//            try? realm.write {
+//                realm.delete(self)
+//                
 //            }
 //        }
-    }
-    
-    private func update(_ originalList: List<WeightUnit>, with newArray: [WeightUnit]) {
-        guard let realm = self.realm else { return }
-        
-        let oldArray = Array(originalList)
-        
-        if newArray != oldArray {
-            try? realm.write {
-                let newSet = Set(newArray.map { $0.id })
-                let objectsToDelete = originalList.filter { !newSet.contains($0.id) }
-                realm.delete(objectsToDelete)
-                
-                originalList.removeAll()
-                originalList.append(objectsIn: newArray)                
-            }
-        }
-        
-    }
+//        self.update(self.barbells, with: barbells)
+//        self.update(self.plates, with: plates)
+//    }
+//    
+//    private func update(_ originalList: List<WeightUnit>, with newArray: [WeightUnit]) {
+//        guard let realm = self.realm else { return }
+//        
+//        let oldArray = Array(originalList)
+//        
+//        if newArray != oldArray {
+//            
+//            let newSet = Set(newArray.map { $0.id })
+//            let objectsToDelete = originalList.filter { !newSet.contains($0.id) }
+//            
+//            var sortedNewArray = newArray.sorted(by: > )
+//            
+//            try? realm.write {
+//                realm.delete(objectsToDelete)
+//                originalList.removeAll()
+//                originalList.append(objectsIn: sortedNewArray)
+//            }
+//        }
+//        
+//    }
     
 }
 

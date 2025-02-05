@@ -13,6 +13,8 @@ struct WeightSetsListView: View {
     
     @StateObject var viewModel: WeightSetsListViewModel
 //    @State private var isActive = false
+//    @State var isAddingScreenShown = false
+    @State var newWeightSet: WeightSet?
     
     @State private var editingWeightSet: WeightSet?
     
@@ -21,15 +23,42 @@ struct WeightSetsListView: View {
             VStack {
                 
                 
+                
                 WeightsList(weightSets: self.$viewModel.weightSets)
                     .onDelete(self.viewModel.remove)
                     .onEdit { weightSet in
-//                        self.editingWeightSet = weightSet.wrappedValue
                         let viewVodel = self.viewModel.createWeightSetEditViewModel(for: weightSet)
                         WeightSetEditView(viewModel: viewVodel)
                     }
                 
                     .navigationTitle("Sets")
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button {
+                                self.newWeightSet = self.viewModel.addNewWeightSet()                                
+                            } label: {
+                                Image(systemName: "plus")
+                            }
+                        }
+                    }
+                
+                if let newWeightSet = self.$newWeightSet.unwrap() {
+                    let isAddingScreenShown = Binding {
+                        self.newWeightSet != nil
+                    } set: {
+                        if !$0 {
+                            self.newWeightSet = nil
+                        }
+                    }
+                    let viewModel = self.viewModel.createWeightSetEditViewModel(for: newWeightSet)
+                    
+                    NavigationLink(destination: WeightSetEditView(viewModel: viewModel), isActive: isAddingScreenShown) {
+                        EmptyView()
+                    }
+                    .hidden()
+
+                    
+                }
                 
                 
             }

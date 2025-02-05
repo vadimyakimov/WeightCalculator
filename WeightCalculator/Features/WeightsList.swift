@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import SwiftUIIntrospect
+//import SwiftUIIntrospect
+import RealmSwift
 
 struct WeightsList: View {
     
@@ -14,7 +15,7 @@ struct WeightsList: View {
     
     @State private var editingWeightSetUUID: UUID?
     
-    private var onDelete: ((Int) -> Void)?
+    private var onDelete: ((WeightSet) -> Void)?
     private var onEdit: ((Binding<WeightSet>) -> AnyView)?
     //    private var onSelect: ((Int) -> ())?
     
@@ -25,10 +26,7 @@ struct WeightsList: View {
         VStack {
             
             
-            List(self.weightSets.indices, id: \.self) { index in
-                
-                let weightSet = self.$weightSets[index]
-                
+            List(self.$weightSets) { weightSet in
                 Section {
                     HStack {
                         WeightsCell(weightSet: weightSet)
@@ -36,6 +34,7 @@ struct WeightsList: View {
                             self.editScreenLink(destination: onEdit, weightSet: weightSet)
                         }
                     }
+                    
                 } header: {
                     Rectangle().frame(height: 0)
                 } footer: {
@@ -47,17 +46,13 @@ struct WeightsList: View {
                 .swipeActions {
                     if let onDelete {
                         Button(role: .destructive) {
-                            onDelete(index)
-//                            withAnimation {
-//                                _ = self.weightSets.remove(at: index)
-//                            }
+                            onDelete(weightSet.wrappedValue)
                         } label: {
                             Text("Delete")
                         }
                     }
                     if self.onEdit != nil {
                         Button() {
-//                            onEdit(weightSet)
                             self.editingWeightSetUUID = weightSet.wrappedValue.id
                         } label: {
                             Text("Edit")
@@ -68,14 +63,13 @@ struct WeightsList: View {
             .environment(\.defaultMinListHeaderHeight, 0)
         }
         .background(Color(uiColor: .systemGroupedBackground))
-        
     }
     
     init(weightSets: Binding<[WeightSet]>) {
         self._weightSets = weightSets
     }
     
-    func onDelete(_ perform: @escaping (Int) -> Void) -> WeightsList {
+    func onDelete(_ perform: @escaping (WeightSet) -> Void) -> WeightsList {
         var copy = self
         copy.onDelete = perform
         return copy
@@ -83,7 +77,7 @@ struct WeightsList: View {
     
     func onEdit(@ViewBuilder destination: @escaping (Binding<WeightSet>) -> some View) -> WeightsList {
         var copy = self
-//        copy.onEdit = perform
+        //        copy.onEdit = perform
         copy.onEdit = { weightSet in
             AnyView(destination(weightSet))
         }
@@ -98,7 +92,8 @@ struct WeightsList: View {
     
     private func editScreenLink(destination: (Binding<WeightSet>) -> some View, weightSet: Binding<WeightSet>) -> some View {
         let isEditScreenShown = Binding {
-            self.editingWeightSetUUID == weightSet.wrappedValue.id
+            guard !weightSet.wrappedValue.isInvalidated else { return false }
+            return self.editingWeightSetUUID == weightSet.id
         } set: { isShown in
             if !isShown {
                 self.editingWeightSetUUID = nil

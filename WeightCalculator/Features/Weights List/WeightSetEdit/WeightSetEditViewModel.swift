@@ -51,55 +51,33 @@ class WeightSetEditViewModel: ObservableObject {
     // MARK: - Flow funcs
     
     func saveChanges() {
-        self.originalSet.updateWeightUnits(barbells: self.barbells, plates: self.plates)
-        
-        /*
-        guard let realm = try? Realm() else { return }
-        
-        
-        
-        do {
-            try realm.write {
-//                if self.barbells != Array(self.originalSet.barbells) {
-//                    self.originalSet.setValue(self.barbells, forKey: "barbells")
-//                }
-//                if self.plates != Array(self.originalSet.plates) {
-//                    self.originalSet.setValue(self.plates, forKey: "plates")
-//                }
-//                self.originalSet.objectWillChange
-//                withAnimation {
-//                    self.originalSet = self.originalSet
-//                }
+        if self.barbells.isEmpty && self.plates.isEmpty,
+           let realm = self.originalSet.realm {
+            try? realm.write {
+                realm.delete(self.originalSet)
+                
             }
-        } catch {
-            fatalError()
-        }*/
+        }
+        self.update(self.originalSet.barbells, with: self.barbells)
+        self.update(self.originalSet.plates, with: self.plates)
     }
     
-//    func remove(_ objects: [ObjectBase]) {
-//        guard let realm = try? Realm() else { return }
-//        
-//        Task {
-//            do {
-//                try await realm.asyncWrite {
-//                    realm.delete(objects)
-//                }
-//            } catch {
-//                fatalError()
-//            }
-//        }
-//    }
-//    
-    
-//    func saveChanges() {
-//        if let thaw = self.originalSet.thaw(), let realm = thaw.realm {
-//            Task {
-//                try! realm.write {
-//                    thaw.barbells = barbells
-//                    thaw.plates = plates
-//                    thaw.sort()
-//                }
-//            }
-//        }
-//    }
+    private func update(_ originalList: RealmSwift.List<WeightUnit>, with newArray: [WeightUnit]) {
+        
+        let oldArray = Array(originalList)
+        guard let realm = self.originalSet.realm, oldArray != newArray else { return }
+        
+        let nonZeroNewArray = newArray.compactMap { $0.value > 0 ? $0 : nil }
+        let sortedNewArray = nonZeroNewArray.sorted(by: > )
+        
+        let newSet = Set(newArray.map { $0.id })
+        let objectsToDelete = originalList.filter { !newSet.contains($0.id) }
+        
+        try? realm.write {
+            realm.delete(objectsToDelete)
+            originalList.removeAll()
+            originalList.append(objectsIn: sortedNewArray)
+        }
+        
+    }
 }
