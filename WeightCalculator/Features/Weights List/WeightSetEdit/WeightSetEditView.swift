@@ -43,7 +43,9 @@ struct WeightSetEditView: View {
                 }
             }
             .onDisappear {
-                self.viewModel.saveChanges()
+                Task {
+                    await self.viewModel.saveChanges()
+                }
             }
         }
     }

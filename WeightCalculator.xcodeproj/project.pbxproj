@@ -20,6 +20,8 @@
 		DD3A1D512D49294A00C3FD77 /* WeightFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */; };
 		DD3A1D542D492A6800C3FD77 /* WeightFinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */; };
 		DD3AA3452D473D1400AD5B84 /* WeightSetEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3AA3442D473D1000AD5B84 /* WeightSetEditViewModel.swift */; };
+		DD5962482D54D86700A2DD66 /* RM__UserDefaultsUUIDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5962472D54D86100A2DD66 /* RM__UserDefaultsUUIDStorage.swift */; };
+		DD59624A2D54EDE700A2DD66 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5962492D54EDD900A2DD66 /* UserSettings.swift */; };
 		DD5C5F1E2D4B890500491FD9 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DD5C5F1D2D4B890500491FD9 /* RealmSwift */; };
 		DD5C5F1F2D4B890500491FD9 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = DD5C5F1D2D4B890500491FD9 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DD67278F2D4A417F005F1837 /* RM__Binding+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD67278E2D4A4176005F1837 /* RM__Binding+extension.swift */; };
@@ -60,6 +62,8 @@
 		DD3A1D502D49294A00C3FD77 /* WeightFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightFinderView.swift; sourceTree = "<group>"; };
 		DD3A1D532D492A4700C3FD77 /* WeightFinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightFinderViewModel.swift; sourceTree = "<group>"; };
 		DD3AA3442D473D1000AD5B84 /* WeightSetEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditViewModel.swift; sourceTree = "<group>"; };
+		DD5962472D54D86100A2DD66 /* RM__UserDefaultsUUIDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RM__UserDefaultsUUIDStorage.swift; sourceTree = "<group>"; };
+		DD5962492D54EDD900A2DD66 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		DD67278E2D4A4176005F1837 /* RM__Binding+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RM__Binding+extension.swift"; sourceTree = "<group>"; };
 		DD7D1BF02D520F1F009EA4E2 /* Collection+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+extension.swift"; sourceTree = "<group>"; };
 		DD7D45C82D4548D50071A99D /* WeightSetEditSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetEditSectionView.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 		DD38C6882D37BC320055D418 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DD5962492D54EDD900A2DD66 /* UserSettings.swift */,
 				DD38C6962D37C65E0055D418 /* WeightSet.swift */,
 			);
 			path = Model;
@@ -189,6 +194,7 @@
 		DD8DB9752D4687FB00DEC049 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				DD5962472D54D86100A2DD66 /* RM__UserDefaultsUUIDStorage.swift */,
 				DD7D1BF02D520F1F009EA4E2 /* Collection+extension.swift */,
 				DD67278E2D4A4176005F1837 /* RM__Binding+extension.swift */,
 				DD1D60242D4F6408007DE51B /* View+extension.swift */,
@@ -296,11 +302,13 @@
 				DD1D60272D4F98D7007DE51B /* RM__SwipeableView.swift in Sources */,
 				DDD8C7A92D41230200B068FE /* ContentViewModel.swift in Sources */,
 				DD3AA3452D473D1400AD5B84 /* WeightSetEditViewModel.swift in Sources */,
+				DD59624A2D54EDE700A2DD66 /* UserSettings.swift in Sources */,
 				DD38C6932D37BC320055D418 /* WeightSetsListView.swift in Sources */,
 				DD7D45C92D4548D90071A99D /* WeightSetEditSectionView.swift in Sources */,
 				DD38C6972D37C65E0055D418 /* WeightSet.swift in Sources */,
 				DD1D60252D4F6408007DE51B /* View+extension.swift in Sources */,
 				DD38C6952D37BC320055D418 /* WeightCalculatorApp.swift in Sources */,
+				DD5962482D54D86700A2DD66 /* RM__UserDefaultsUUIDStorage.swift in Sources */,
 				DD9DF43F2D4CBA6A00497676 /* WeightsList.swift in Sources */,
 				DDD8C7AB2D41248500B068FE /* WeightSetsListViewModel.swift in Sources */,
 				DD3A1D512D49294A00C3FD77 /* WeightFinderView.swift in Sources */,

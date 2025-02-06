@@ -6,31 +6,49 @@
 //
 
 import SwiftUI
+import RealmSwift
+import Combine
 
+@MainActor
 class WeightFinderViewModel: ObservableObject {
     
     // MARK: - Properties
     
-    private let weightSet: WeightSet
+    private var weightSet: WeightSet?
+    var isWeightSetSelected: Bool {
+        self.weightSet != nil
+    }
+    
+    private var cancellables = Set<AnyCancellable>()
     
     @Published var weightVariants: [WeightSet]?
     
     // MARK: - Initializers
     
-    init(weightSet: WeightSet) {
-        self.weightSet = weightSet
+    init(userSettings: UserSettings) {        
+        let realm = try? Realm()
+        if let selectedWeightSetUUID = userSettings.selectedWeightSetUUID {
+            self.weightSet = realm?.object(ofType: WeightSet.self, forPrimaryKey: selectedWeightSetUUID)
+        }
+        
+        userSettings.$selectedWeightSetUUID.sink { uuid in
+            if let uuid {
+                self.weightSet = realm?.object(ofType: WeightSet.self, forPrimaryKey: uuid)
+                self.weightVariants = nil
+            }
+        }.store(in: &self.cancellables)
     }
     
     // MARK: - Flow funcs
     
     func findRequiredWeightSet(for requiredWeight: Double?) {
-        guard let requiredWeight, requiredWeight > 0 else {
+        guard let weightSet, let requiredWeight, requiredWeight > 0 else {
             self.weightVariants = nil
             return
         }
         
-        let barbells = Array(self.weightSet.barbells).map({ $0.value })
-        let plates = Array(self.weightSet.plates).map({ $0.value })
+        let barbells = Array(weightSet.barbells).map({ $0.value })
+        let plates = Array(weightSet.plates).map({ $0.value })
         
         var weightVariants: [WeightSet] = []
         

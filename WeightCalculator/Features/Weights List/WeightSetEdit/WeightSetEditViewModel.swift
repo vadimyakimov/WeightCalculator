@@ -50,19 +50,19 @@ class WeightSetEditViewModel: ObservableObject {
     
     // MARK: - Flow funcs
     
-    func saveChanges() {
+    func saveChanges() async {
         if self.barbells.isEmpty && self.plates.isEmpty,
            let realm = self.originalSet.realm {
-            try? realm.write {
+            try? await realm.asyncWrite {
                 realm.delete(self.originalSet)
-                
             }
+        } else {
+            await self.update(self.originalSet.barbells, with: self.barbells)
+            await self.update(self.originalSet.plates, with: self.plates)
         }
-        self.update(self.originalSet.barbells, with: self.barbells)
-        self.update(self.originalSet.plates, with: self.plates)
     }
     
-    private func update(_ originalList: RealmSwift.List<WeightUnit>, with newArray: [WeightUnit]) {
+    private func update(_ originalList: RealmSwift.List<WeightUnit>, with newArray: [WeightUnit]) async {
         
         let oldArray = Array(originalList)
         guard let realm = self.originalSet.realm, oldArray != newArray else { return }
@@ -73,7 +73,7 @@ class WeightSetEditViewModel: ObservableObject {
         let newSet = Set(newArray.map { $0.id })
         let objectsToDelete = originalList.filter { !newSet.contains($0.id) }
         
-        try? realm.write {
+        try? await realm.asyncWrite {
             realm.delete(objectsToDelete)
             originalList.removeAll()
             originalList.append(objectsIn: sortedNewArray)

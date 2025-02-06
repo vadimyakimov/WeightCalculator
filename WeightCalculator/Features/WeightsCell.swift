@@ -33,8 +33,7 @@ struct WeightsCell: View {
                 .cornerRadius(8)
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 16)
-
+        .padding(.vertical, 16)   
     }
     
     init(weightSet: Binding<WeightSet>) {

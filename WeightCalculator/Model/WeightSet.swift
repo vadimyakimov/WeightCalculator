@@ -28,41 +28,7 @@ class WeightSet: Object, ObjectKeyIdentifiable {
     
     override class func primaryKey() -> String? {
         "id"
-    }
-    
-//    func updateWeightUnits(barbells: [WeightUnit], plates: [WeightUnit]) {
-//        if barbells.isEmpty && plates.isEmpty,
-//           let realm = self.realm {
-//            try? realm.write {
-//                realm.delete(self)
-//                
-//            }
-//        }
-//        self.update(self.barbells, with: barbells)
-//        self.update(self.plates, with: plates)
-//    }
-//    
-//    private func update(_ originalList: List<WeightUnit>, with newArray: [WeightUnit]) {
-//        guard let realm = self.realm else { return }
-//        
-//        let oldArray = Array(originalList)
-//        
-//        if newArray != oldArray {
-//            
-//            let newSet = Set(newArray.map { $0.id })
-//            let objectsToDelete = originalList.filter { !newSet.contains($0.id) }
-//            
-//            var sortedNewArray = newArray.sorted(by: > )
-//            
-//            try? realm.write {
-//                realm.delete(objectsToDelete)
-//                originalList.removeAll()
-//                originalList.append(objectsIn: sortedNewArray)
-//            }
-//        }
-//        
-//    }
-    
+    }    
 }
 
 class WeightUnit: Object, ObjectKeyIdentifiable, ExpressibleByFloatLiteral, Comparable {

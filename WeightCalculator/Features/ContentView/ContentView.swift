@@ -50,6 +50,7 @@ struct ContentView: View {
                     }
                 
             }
+            .environmentObject(self.viewModel.userSettings)
     }
 }
 

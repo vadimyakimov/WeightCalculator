@@ -11,10 +11,14 @@ import SwiftUI
 @MainActor
 class ContentViewModel {
 
-//    let realm: Realm
-    @ObservedResults(WeightSet.self) var weightSets
-    
+    @ObservedResults(WeightSet.self) var weightSets    
+    let userSettings = UserSettings()
+        
     init() {
+//        self.userSettings.selectedWeightSetUUID = nil
+//        UserDefaults.standard.object(forKey: "selectedWeightSet")
+//        UserDefaults.standard.set(UUID(), forKey: "selectedWeightSet")
+        
 //        let realm = try! Realm()
 //        self.weightSets = realm.objects(WeightSet.self)
         
@@ -40,6 +44,11 @@ class ContentViewModel {
      
     
     func createWeightFinderViewModel() -> WeightFinderViewModel {
-        return WeightFinderViewModel(weightSet: self.weightSets.last!)
+        let realm = self.weightSets.realm
+        var weightSet: WeightSet? = nil
+        if let selectedWeightSetUUID = self.userSettings.selectedWeightSetUUID {
+            weightSet = realm?.object(ofType: WeightSet.self, forPrimaryKey: selectedWeightSetUUID)
+        }
+        return WeightFinderViewModel(userSettings: self.userSettings)
     }
 }

@@ -16,29 +16,21 @@ struct WeightFinderView: View {
     @State private var scrollViewContentSize: CGSize = .zero
     @FocusState var isFocused: Bool
     
-    var body: some View {
-        
+    var body: some View {        
         NavigationView {
-            VStack { // SPACING AND NO PADDING BELOW
-                if let weightVariants = self.$viewModel.weightVariants.unwrap() {
-                    if !weightVariants.isEmpty {
+            VStack {
+                Group {
+                    if !self.viewModel.isWeightSetSelected {
+                        Text("You need to select a weight set first.")
+                    } else if self.viewModel.weightVariants?.isEmpty == true {
+                        Text("Suitable weight set is not found.")
+                    } else if let weightVariants = self.$viewModel.weightVariants.unwrap() {
                         WeightsList(weightSets: weightVariants)
-                        .navigationTitle("Weight Finder")
-                        .navigationBarTitleDisplayMode(.large)
                     } else {
-                        VStack {
-                            Spacer()
-                            Text("Suitable weight set is not found.")
-                            Spacer()
-                        }
-                        .navigationTitle("Weight Finder")
-                        .navigationBarTitleDisplayMode(.large)
+                        Text("Enter the required weight.")
                     }
-                } else {
-                    Spacer()
-                        .navigationTitle("Weight Finder")
-                        .navigationBarTitleDisplayMode(.large)
                 }
+                .frame(maxHeight: .infinity)
                 
                 Divider()
                 HStack {
@@ -50,16 +42,30 @@ struct WeightFinderView: View {
                         .background(Color(uiColor: .secondarySystemGroupedBackground))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color(uiColor: .systemGray), lineWidth: 1)
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color(uiColor: .systemGray), lineWidth: 1)
+                                HStack {
+                                    if self.requiredWeight != nil {
+                                        Spacer()
+                                        Button(action: {
+                                            self.requiredWeight = nil
+                                        }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.trailing, 8)
+                                    }
+                                }
+                            }
                         )
+                    
                     
                     Button("Find") {
                         self.isFocused = false
                         Task {
                             withAnimation {
-                                self.viewModel.findRequiredWeightSet(for: self.requiredWeight)
-                                
+                                self.viewModel.findRequiredWeightSet(for: self.requiredWeight)                                
                             }
                         }
                     }
@@ -71,8 +77,11 @@ struct WeightFinderView: View {
                     
                 }
                 .padding()
+                .disabled(self.viewModel.isWeightSetSelected ? false : true)
                 
             }
+            .navigationTitle("Weight Finder")
+            .navigationBarTitleDisplayMode(.large)
             .background(Color(uiColor: .systemGroupedBackground))
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
@@ -89,7 +98,7 @@ struct WeightFinderView: View {
     }
 }
 
-#Preview {
-    let VM = WeightFinderViewModel(weightSet: WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]))
-    WeightFinderView(viewModel: VM)
-}
+//#Preview {
+//    let VM = WeightFinderViewModel(weightSet: WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]))
+//    WeightFinderView(viewModel: VM)
+//}

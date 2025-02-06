@@ -12,10 +12,7 @@ import UIKit
 struct WeightSetsListView: View {
     
     @StateObject var viewModel: WeightSetsListViewModel
-//    @State private var isActive = false
-//    @State var isAddingScreenShown = false
-    @State var newWeightSet: WeightSet?
-    
+        
     @State private var editingWeightSet: WeightSet?
     
     var body: some View {
@@ -30,24 +27,25 @@ struct WeightSetsListView: View {
                         let viewVodel = self.viewModel.createWeightSetEditViewModel(for: weightSet)
                         WeightSetEditView(viewModel: viewVodel)
                     }
+//                    .onSelect(self.viewModel.didSelectWeightSet)
                 
                     .navigationTitle("Sets")
                     .toolbar {
                         ToolbarItem(placement: .topBarTrailing) {
                             Button {
-                                self.newWeightSet = self.viewModel.addNewWeightSet()                                
+                                self.viewModel.addNewWeightSet()
                             } label: {
                                 Image(systemName: "plus")
                             }
                         }
                     }
                 
-                if let newWeightSet = self.$newWeightSet.unwrap() {
+                if let newWeightSet = self.$viewModel.newWeightSet.unwrap() {
                     let isAddingScreenShown = Binding {
-                        self.newWeightSet != nil
+                        self.viewModel.newWeightSet != nil
                     } set: {
                         if !$0 {
-                            self.newWeightSet = nil
+                            self.viewModel.newWeightSet = nil
                         }
                     }
                     let viewModel = self.viewModel.createWeightSetEditViewModel(for: newWeightSet)
@@ -56,15 +54,9 @@ struct WeightSetsListView: View {
                         EmptyView()
                     }
                     .hidden()
-
-                    
                 }
-                
-                
             }
         }
-        
-        
     }
     
 //    init(viewModel: WeightSetsListViewModel, editingWeightSet: WeightSet? = nil) {
