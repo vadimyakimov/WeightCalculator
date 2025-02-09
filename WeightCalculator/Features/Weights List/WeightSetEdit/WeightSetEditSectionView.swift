@@ -15,6 +15,7 @@ struct WeightSetEditSectionView: View {
     
     @FocusState var focusedField: UUID?
     let newWeightFieldID: UUID
+    @State var hasJustAddedNewWeight: Bool = false
     
     @State private var newWeight: Double? = nil
         
@@ -25,6 +26,12 @@ struct WeightSetEditSectionView: View {
                     TextField("Edit", value: weight.value, format: .number)
                         .keyboardType(.decimalPad)
                         .focused(self.$focusedField, equals: weight.wrappedValue.id)
+                        .onAppear {
+                            if self.hasJustAddedNewWeight {
+                                self.focusedField = weight.wrappedValue.id
+                                self.hasJustAddedNewWeight.toggle()
+                            }
+                        }
                 }
                 .onDelete { indexSet in
                     self.weights.remove(atOffsets: indexSet)                    
@@ -39,8 +46,8 @@ struct WeightSetEditSectionView: View {
                         guard let newValue else { return }
                         let newWeightUnit = WeightUnit(newValue)
                         self.weights.append(newWeightUnit)
-                        self.focusedField = self.weights.last?.id
                         self.newWeight = nil
+                        self.hasJustAddedNewWeight = true
                     }
             
         } header: {
