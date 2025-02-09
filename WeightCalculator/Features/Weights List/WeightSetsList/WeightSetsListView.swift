@@ -21,7 +21,7 @@ struct WeightSetsListView: View {
                 
                 
                 
-                WeightsList(weightSets: self.$viewModel.weightSets)
+                WeightsList(weightSets: self.$viewModel.weightSets, isSelectable: true)
                     .onDelete(self.viewModel.remove)
                     .onEdit { weightSet in
                         let viewVodel = self.viewModel.createWeightSetEditViewModel(for: weightSet)

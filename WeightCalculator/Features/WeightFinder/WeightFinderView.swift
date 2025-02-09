@@ -16,7 +16,7 @@ struct WeightFinderView: View {
     
     var body: some View {        
         NavigationView {
-            VStack {
+            VStack(spacing: 0) {
                 Group {
                     if !self.viewModel.isWeightSetSelected {
                         Text("You need to select a weight set first.")

@@ -17,7 +17,7 @@ struct WeightsCell: View {
     private var onTap: (([WeightUnit]) -> ())?
     
     var body: some View {
-        
+                
         let weights = Array(self.weightSet.barbells) + Array(self.weightSet.plates)
         let barbellsCount = self.weightSet.barbells.count
                         

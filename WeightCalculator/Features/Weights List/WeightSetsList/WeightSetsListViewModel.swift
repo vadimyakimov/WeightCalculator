@@ -30,11 +30,16 @@ class WeightSetsListViewModel: ObservableObject {
             switch changes {
             case .update(let weightSetResults, deletions: let deletions, insertions: let insertions, modifications: let modifications):
                 
+//                let lastSelectedWeightSetUUID = self.userSettings.selectedWeightSetUUID
+                print(deletions, insertions, modifications)
+                
+//                if !deletions.isEmpty {
                 let deletionsIndexSet = IndexSet(deletions)
                 withAnimation {
                     self.weightSets.remove(atOffsets: deletionsIndexSet)
-                    self.userSettings.selectedWeightSetUUID = nil
+//                    self.userSettings.selectedWeightSetUUID = nil
                 }
+//                }
                 
                 for index in insertions {
                     let object = weightSetResults[index]
@@ -48,6 +53,7 @@ class WeightSetsListViewModel: ObservableObject {
                 //                }
                 
                 //                self.objectWillChange.send()
+//                self.userSettings.selectedWeightSetUUID = lastSelectedWeightSetUUID
             default: break
             }
         }

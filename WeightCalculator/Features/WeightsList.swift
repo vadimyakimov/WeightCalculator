@@ -14,16 +14,18 @@ struct WeightsList: View {
     @Binding private var weightSets: [WeightSet]
     @State private var editingWeightSetUUID: UUID?
     
-    @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject private var userSettings: UserSettings
+    let isSelectable: Bool
     
     private var onDelete: ((WeightSet) -> Void)?
     private var onEdit: ((Binding<WeightSet>) -> AnyView)?
     
-    var body: some View {
-        
+    var body: some View {        
         VStack {
-            
-            List(self.$weightSets, selection: self.$userSettings.selectedWeightSetUUID) { weightSet in
+            List(
+                self.$weightSets,
+                selection: self.isSelectable ? self.$userSettings.selectedWeightSetUUID : nil
+            ) { weightSet in
                 
                 if !weightSet.wrappedValue.barbells.isEmpty || !weightSet.wrappedValue.plates.isEmpty {
                     Section {
@@ -59,18 +61,16 @@ struct WeightsList: View {
                             }
                         }
                     }
-                    
                 }
-                
-                
             }
             .environment(\.defaultMinListHeaderHeight, 0)
         }
         .background(Color(uiColor: .systemGroupedBackground))
     }
     
-    init(weightSets: Binding<[WeightSet]>) {
+    init(weightSets: Binding<[WeightSet]>, isSelectable: Bool = false) {
         self._weightSets = weightSets
+        self.isSelectable = isSelectable
     }
     
     func onDelete(_ perform: @escaping (WeightSet) -> Void) -> WeightsList {
@@ -103,9 +103,4 @@ struct WeightsList: View {
         .frame(width: .zero)
         .hidden()
     }
-    
 }
-
-//#Preview {
-//    WeightsList()
-//}
