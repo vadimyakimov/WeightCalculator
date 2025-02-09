@@ -5,14 +5,15 @@
 //  Created by Вадим on 15.01.2025.
 //
 
+//import SwiftUI
 import Foundation
 import RealmSwift
 
 class WeightSet: Object, ObjectKeyIdentifiable {
     
     @Persisted(primaryKey: true) var id: UUID = UUID()
-    @Persisted var barbells: List<WeightUnit>
-    @Persisted var plates: List<WeightUnit>
+    @Persisted var barbells: RealmSwift.List<WeightUnit>
+    @Persisted var plates: RealmSwift.List<WeightUnit>
     
     var isEmpty: Bool {
         self.barbells.isEmpty && self.plates.isEmpty
@@ -35,6 +36,12 @@ class WeightUnit: Object, ObjectKeyIdentifiable, ExpressibleByFloatLiteral, Comp
         
     @Persisted(primaryKey: true) var id: UUID
     @Persisted var value: Double
+    var isSelected: Bool = false
+    {
+        didSet {
+            print(isSelected)
+        }
+    }
         
     required convenience init(floatLiteral value: Double) {
         self.init()

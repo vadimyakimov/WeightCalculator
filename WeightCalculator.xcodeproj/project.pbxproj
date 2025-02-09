@@ -32,6 +32,8 @@
 		DDD8C7A72D4122C800B068FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD8C7A52D4122C800B068FE /* ContentView.swift */; };
 		DDD8C7A92D41230200B068FE /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD8C7A82D4122F700B068FE /* ContentViewModel.swift */; };
 		DDD8C7AB2D41248500B068FE /* WeightSetsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD8C7AA2D41247C00B068FE /* WeightSetsListViewModel.swift */; };
+		DDF1B0C32D55F1CE00A085CF /* WeightSummatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1B0C22D55F1CE00A085CF /* WeightSummatorView.swift */; };
+		DDF1B0C62D55F1EB00A085CF /* WeightSummatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1B0C52D55F1E700A085CF /* WeightSummatorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +73,8 @@
 		DDD8C7A52D4122C800B068FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DDD8C7A82D4122F700B068FE /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		DDD8C7AA2D41247C00B068FE /* WeightSetsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSetsListViewModel.swift; sourceTree = "<group>"; };
+		DDF1B0C22D55F1CE00A085CF /* WeightSummatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSummatorView.swift; sourceTree = "<group>"; };
+		DDF1B0C52D55F1E700A085CF /* WeightSummatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightSummatorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,7 @@
 			children = (
 				DDD8C7A62D4122C800B068FE /* ContentView */,
 				DD3A1D522D49295800C3FD77 /* WeightFinder */,
+				DDF1B0C42D55F1D700A085CF /* WeightSummator */,
 				DD3A1D4F2D49291700C3FD77 /* Weights List */,
 				DD1D60262D4F98D7007DE51B /* RM__SwipeableView.swift */,
 				DD9DF43E2D4CBA6A00497676 /* WeightsList.swift */,
@@ -209,6 +214,15 @@
 				DDD8C7A52D4122C800B068FE /* ContentView.swift */,
 			);
 			path = ContentView;
+			sourceTree = "<group>";
+		};
+		DDF1B0C42D55F1D700A085CF /* WeightSummator */ = {
+			isa = PBXGroup;
+			children = (
+				DDF1B0C52D55F1E700A085CF /* WeightSummatorViewModel.swift */,
+				DDF1B0C22D55F1CE00A085CF /* WeightSummatorView.swift */,
+			);
+			path = WeightSummator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +314,7 @@
 				DD3A1D542D492A6800C3FD77 /* WeightFinderViewModel.swift in Sources */,
 				DDD8C7A72D4122C800B068FE /* ContentView.swift in Sources */,
 				DD1D60272D4F98D7007DE51B /* RM__SwipeableView.swift in Sources */,
+				DDF1B0C62D55F1EB00A085CF /* WeightSummatorViewModel.swift in Sources */,
 				DDD8C7A92D41230200B068FE /* ContentViewModel.swift in Sources */,
 				DD3AA3452D473D1400AD5B84 /* WeightSetEditViewModel.swift in Sources */,
 				DD59624A2D54EDE700A2DD66 /* UserSettings.swift in Sources */,
@@ -311,6 +326,7 @@
 				DD5962482D54D86700A2DD66 /* RM__UserDefaultsUUIDStorage.swift in Sources */,
 				DD9DF43F2D4CBA6A00497676 /* WeightsList.swift in Sources */,
 				DDD8C7AB2D41248500B068FE /* WeightSetsListViewModel.swift in Sources */,
+				DDF1B0C32D55F1CE00A085CF /* WeightSummatorView.swift in Sources */,
 				DD3A1D512D49294A00C3FD77 /* WeightFinderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

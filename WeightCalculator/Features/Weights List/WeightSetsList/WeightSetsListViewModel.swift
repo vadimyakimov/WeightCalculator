@@ -14,12 +14,14 @@ class WeightSetsListViewModel: ObservableObject {
     @Published var weightSets: [WeightSet] = []
     @Published var newWeightSet: WeightSet?
     
+    private var userSettings: UserSettings
     
-    
-    var token: NotificationToken?
-    
-    init(weightSets: Results<WeightSet>) {
+    private var token: NotificationToken?
+        
+    init(weightSets: Results<WeightSet>, userSettings: UserSettings) {
         self.weightSets = Array(weightSets)
+        self.userSettings = userSettings
+        
         self.token = self.createNotificationToken(for: weightSets)
     }
     
@@ -30,7 +32,8 @@ class WeightSetsListViewModel: ObservableObject {
                 
                 let deletionsIndexSet = IndexSet(deletions)
                 withAnimation {
-                    self.weightSets.remove(atOffsets: deletionsIndexSet)                    
+                    self.weightSets.remove(atOffsets: deletionsIndexSet)
+                    self.userSettings.selectedWeightSetUUID = nil
                 }
                 
                 for index in insertions {

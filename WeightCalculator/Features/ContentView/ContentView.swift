@@ -17,7 +17,7 @@ struct ContentView: View {
     }
     
     var viewModel = ContentViewModel()
-    @State var selectedTab: Tab = .list
+    @State var selectedTab: Tab = .summator
     
     
     
@@ -34,13 +34,14 @@ struct ContentView: View {
                         Label("Weights Finder", systemImage: "house.fill")
                     }
                 
-                /*
-                Text("Second Tab Content")
+                
+                let summatorViewModel = self.viewModel.createWeightSummatorViewModel()
+                WeightSummatorView(viewModel: summatorViewModel)
                     .tag(Tab.summator)
                     .tabItem {
                         Label("Third", systemImage: "star.fill")
                     }
-                 */
+                 
                 
                 let listViewModel = self.viewModel.createWeightSetsListViewModel()
                 WeightSetsListView(viewModel: listViewModel)

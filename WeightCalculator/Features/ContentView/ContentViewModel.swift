@@ -36,19 +36,20 @@ class ContentViewModel {
 //    }
     
     func createWeightSetsListViewModel() -> WeightSetsListViewModel {
-//        self.weightSets.observe { _ in
-//            
-//        }
-        return WeightSetsListViewModel(weightSets: self.weightSets)
+        return WeightSetsListViewModel(weightSets: self.weightSets, userSettings: self.userSettings)
     }
-     
     
     func createWeightFinderViewModel() -> WeightFinderViewModel {
-        let realm = self.weightSets.realm
-        var weightSet: WeightSet? = nil
-        if let selectedWeightSetUUID = self.userSettings.selectedWeightSetUUID {
-            weightSet = realm?.object(ofType: WeightSet.self, forPrimaryKey: selectedWeightSetUUID)
-        }
+//        let realm = self.weightSets.realm
+//        var weightSet: WeightSet? = nil
+//        if let selectedWeightSetUUID = self.userSettings.selectedWeightSetUUID {
+//            weightSet = realm?.object(ofType: WeightSet.self, forPrimaryKey: selectedWeightSetUUID)
+//        }
         return WeightFinderViewModel(userSettings: self.userSettings)
+    }
+    
+    
+    func createWeightSummatorViewModel() -> WeightSummatorViewModel {
+        return WeightSummatorViewModel(userSettings: self.userSettings)
     }
 }

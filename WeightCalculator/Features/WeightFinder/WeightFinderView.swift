@@ -10,9 +10,7 @@ import SwiftUI
 struct WeightFinderView: View {
     
     @StateObject var viewModel: WeightFinderViewModel
-    
-    @State var requiredWeight: Double? 
-    
+        
     @State private var scrollViewContentSize: CGSize = .zero
     @FocusState var isFocused: Bool
     
@@ -34,7 +32,7 @@ struct WeightFinderView: View {
                 
                 Divider()
                 HStack {
-                    TextField("Enter the required weight", value: self.$requiredWeight, format: .number)
+                    TextField("Enter the required weight", value: self.$viewModel.requiredWeight, format: .number)
                         .keyboardType(.decimalPad)
                         .focused(self.$isFocused)
                         .frame(height: 40)
@@ -46,10 +44,10 @@ struct WeightFinderView: View {
                                 RoundedRectangle(cornerRadius: 8)
                                     .stroke(Color(uiColor: .systemGray), lineWidth: 1)
                                 HStack {
-                                    if self.requiredWeight != nil {
+                                    if self.viewModel.requiredWeight != nil {
                                         Spacer()
                                         Button(action: {
-                                            self.requiredWeight = nil
+                                            self.viewModel.requiredWeight = nil
                                         }) {
                                             Image(systemName: "xmark.circle.fill")
                                                 .foregroundColor(.gray)
@@ -65,7 +63,7 @@ struct WeightFinderView: View {
                         self.isFocused = false
                         Task {
                             withAnimation {
-                                self.viewModel.findRequiredWeightSet(for: self.requiredWeight)                                
+                                self.viewModel.findRequiredWeightSet()                                
                             }
                         }
                     }

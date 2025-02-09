@@ -12,16 +12,15 @@ import WrappingHStack
 struct WeightsCell: View {
     
     @Binding var weightSet: WeightSet
+    @Binding var selectedWeightsIndices: Set<Int>
     
-    private var onDelete: ((WeightSet) -> ())?
-    private var onEdit: ((WeightSet) -> ())?
-    private var onSelect: ((Int) -> ())?
-    
+    private var onTap: (([WeightUnit]) -> ())?
     
     var body: some View {
         
         let weights = Array(self.weightSet.barbells) + Array(self.weightSet.plates)
         let barbellsCount = self.weightSet.barbells.count
+                        
         
         WrappingHStack(weights.indices, spacing: .constant(6), lineSpacing: 6) { index in
             let string = self.formatWeightUnit(weights[index])
@@ -31,30 +30,44 @@ struct WeightsCell: View {
                 .background(index < barbellsCount ? Color.blue : Color.green)
                 .foregroundColor(.white)
                 .cornerRadius(8)
+                .overlay {
+                    if self.selectedWeightsIndices.contains(index) {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1)
+                            .fill(.gray)
+                        RoundedRectangle(cornerRadius: 8)
+                            .fill(.white)
+                            .opacity(0.1)
+                    }
+                }
+                .gesture(
+                    self.onTap != nil ? TapGesture()
+                        .onEnded {
+                            if !self.selectedWeightsIndices.insert(index).inserted {
+                                self.selectedWeightsIndices.remove(index)
+                            }
+                            let selectedWeightUnits = self.selectedWeightsIndices.compactMap { weights[safe: $0] }
+                            self.onTap?(selectedWeightUnits)
+                        } :  nil
+                )
         }
         .padding(.horizontal, 16)
-        .padding(.vertical, 16)   
+        .padding(.vertical, 16)
     }
     
     init(weightSet: Binding<WeightSet>) {
         self._weightSet = weightSet
+        self._selectedWeightsIndices = Binding(get: { [] }, set: { _ in })
     }
     
-    func onDelete(_ closure: ((WeightSet) -> ())?) -> WeightsCell {
-        var copy = self
-        copy.onDelete = closure
-        return copy
+    init(weightSet: Binding<WeightSet>, selectedWeightsIndices: Binding<Set<Int>>) {
+        self._weightSet = weightSet
+        self._selectedWeightsIndices = selectedWeightsIndices
     }
     
-    func onEdit(_ closure: ((WeightSet) -> ())?) -> WeightsCell {
+    func onTap(_ closure: (([WeightUnit]) -> ())?) -> WeightsCell {
         var copy = self
-        copy.onEdit = closure
-        return copy
-    }
-    
-    func onSelect(_ closure: @escaping (Int) -> ()) -> WeightsCell {
-        var copy = self
-        copy.onSelect = closure
+        copy.onTap = closure
         return copy
     }
     

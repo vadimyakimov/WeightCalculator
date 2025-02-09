@@ -19,9 +19,11 @@ class WeightFinderViewModel: ObservableObject {
         self.weightSet != nil
     }
     
+    @Published var weightVariants: [WeightSet]?
+    @Published var requiredWeight: Double?
+    
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var weightVariants: [WeightSet]?
     
     // MARK: - Initializers
     
@@ -35,13 +37,17 @@ class WeightFinderViewModel: ObservableObject {
             if let uuid {
                 self.weightSet = realm?.object(ofType: WeightSet.self, forPrimaryKey: uuid)
                 self.weightVariants = nil
+            } else {
+                self.weightVariants = nil
+                self.weightSet = nil
+                self.requiredWeight = nil
             }
         }.store(in: &self.cancellables)
     }
     
     // MARK: - Flow funcs
     
-    func findRequiredWeightSet(for requiredWeight: Double?) {
+    func findRequiredWeightSet() {
         guard let weightSet, let requiredWeight, requiredWeight > 0 else {
             self.weightVariants = nil
             return

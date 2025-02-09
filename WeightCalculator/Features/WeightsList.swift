@@ -28,7 +28,7 @@ struct WeightsList: View {
             
             List(self.$weightSets, selection: self.$userSettings.selectedWeightSetUUID) { weightSet in
                 
-                if !weightSet.wrappedValue.barbells.isEmpty && !weightSet.wrappedValue.plates.isEmpty {
+                if !weightSet.wrappedValue.barbells.isEmpty || !weightSet.wrappedValue.plates.isEmpty {
                     Section {
                         HStack {
                             WeightsCell(weightSet: weightSet)
