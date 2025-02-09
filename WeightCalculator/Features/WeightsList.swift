@@ -59,6 +59,7 @@ struct WeightsList: View {
                             } label: {
                                 Text("Edit")
                             }
+                            .tint(.orange)
                         }
                     }
                 }

@@ -27,17 +27,17 @@ struct WeightsCell: View {
             Text(string)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
-                .background(index < barbellsCount ? Color.blue : Color.green)
+                .background(index < barbellsCount ? Color.barbellFill : Color.plateFill)
                 .foregroundColor(.white)
                 .cornerRadius(8)
                 .overlay {
                     if self.selectedWeightsIndices.contains(index) {
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(lineWidth: 1)
-                            .fill(.gray)
+                            .stroke(lineWidth: 1.5)
+                            .fill(index < barbellsCount ? Color.barbellStroke : Color.plateStroke)
                         RoundedRectangle(cornerRadius: 8)
-                            .fill(.white)
-                            .opacity(0.1)
+                            .fill(Color(uiColor: .secondarySystemBackground))
+                            .opacity(0.5)
                     }
                 }
                 .gesture(
