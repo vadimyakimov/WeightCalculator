@@ -27,7 +27,6 @@ struct WeightSetsListView: View {
                         let viewVodel = self.viewModel.createWeightSetEditViewModel(for: weightSet)
                         WeightSetEditView(viewModel: viewVodel)
                     }
-//                    .onSelect(self.viewModel.didSelectWeightSet)
                 
                     .navigationTitle("Sets")
                     .toolbar {

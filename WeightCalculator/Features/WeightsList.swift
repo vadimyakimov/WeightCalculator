@@ -18,9 +18,6 @@ struct WeightsList: View {
     
     private var onDelete: ((WeightSet) -> Void)?
     private var onEdit: ((Binding<WeightSet>) -> AnyView)?
-    private var onSelect: ((UUID) -> ())?
-    
-    
     
     var body: some View {
         
@@ -63,10 +60,6 @@ struct WeightsList: View {
                         }
                     }
                     
-//                    .onTapGesture {
-//                        self.userSettings.selectedWeightSetUUID = weightSet.id
-//                    }
-                    
                 }
                 
                 
@@ -91,12 +84,6 @@ struct WeightsList: View {
         copy.onEdit = { weightSet in
             AnyView(destination(weightSet))
         }
-        return copy
-    }
-    
-    func onSelect(_ closure: @escaping (UUID) -> ()) -> WeightsList {
-        var copy = self
-        copy.onSelect = closure
         return copy
     }
     

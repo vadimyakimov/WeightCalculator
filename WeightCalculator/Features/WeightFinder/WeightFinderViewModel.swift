@@ -58,10 +58,21 @@ class WeightFinderViewModel: ObservableObject {
         
         var weightVariants: [WeightSet] = []
         
+        
+        // Searching for suitable weights with barbells
         for barbell in barbells {
-            guard !weightVariants.contains(where: { $0.barbells.contains(where: { $0.value == barbell }) }),    // Check if there is variant with the same barbell
-                  let plateVariants = self.findRequiredPlates(for: requiredWeight - barbell, weightSet: plates) // Check if there is suitable plates for this barbell
-            else { continue }
+            // Check if there is variant with the same barbell
+            guard !weightVariants.contains(where: { $0.barbells.contains(where: { $0.value == barbell }) }) else { continue }
+            
+            if barbell == requiredWeight {
+                let barbellUnit = WeightUnit(barbell)
+                let weightSet = WeightSet(barbells: [barbellUnit], plates: [])
+                weightVariants.append(weightSet)
+                continue
+            }
+            
+            // Check if there is suitable plates for this barbell
+            guard let plateVariants = self.findRequiredPlates(for: requiredWeight - barbell, weightSet: plates) else { continue }
             
             for plateVariant in plateVariants {
                 let barbellUnit = WeightUnit(barbell)
@@ -69,6 +80,17 @@ class WeightFinderViewModel: ObservableObject {
                 let weightSet = WeightSet(barbells: [barbellUnit], plates: plateUnits)
                 weightVariants.append(weightSet)
             }
+        }
+        
+        // Searching for suitable weights without barbells (with the single plate)
+        for plate in plates {
+            // Check if there is variant with the same plate
+            guard !weightVariants.contains(where: { $0.plates.contains(where: { $0.value == plate }) }),
+                  plate == requiredWeight else { continue }
+            
+            let plateUnit = WeightUnit(plate)
+            let weightSet = WeightSet(barbells: [], plates: [plateUnit])
+            weightVariants.append(weightSet)
         }
         
         self.weightVariants = weightVariants
