@@ -9,12 +9,16 @@ import SwiftUI
 
 struct WeightFinderView: View {
     
+    // MARK: - Properties
+    
     @StateObject var viewModel: WeightFinderViewModel
-        
+    
     @State private var scrollViewContentSize: CGSize = .zero
     @FocusState var isFocused: Bool
     
-    var body: some View {        
+    // MARK: - body
+    
+    var body: some View {
         NavigationView {
             VStack(spacing: 0) {
                 Group {
@@ -95,8 +99,3 @@ struct WeightFinderView: View {
         }
     }
 }
-
-//#Preview {
-//    let VM = WeightFinderViewModel(weightSet: WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8]))
-//    WeightFinderView(viewModel: VM)
-//}

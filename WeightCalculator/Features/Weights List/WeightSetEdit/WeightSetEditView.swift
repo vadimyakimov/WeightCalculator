@@ -90,10 +90,3 @@ struct WeightSetEditView: View {
         }
     }
 }
-
-//#Preview {
-//    WeightSetEditView(weightSet: .constant(
-//        WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
-//    ))
-//}
-

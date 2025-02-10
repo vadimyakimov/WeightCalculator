@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-//import SwiftUIIntrospect
-import RealmSwift
 
 struct WeightsList: View {
+    
+    // MARK: - Properties
     
     @Binding private var weightSets: [WeightSet]
     @State private var editingWeightSetUUID: UUID?
@@ -20,7 +20,9 @@ struct WeightsList: View {
     private var onDelete: ((WeightSet) -> Void)?
     private var onEdit: ((Binding<WeightSet>) -> AnyView)?
     
-    var body: some View {        
+    // MARK: - body
+    
+    var body: some View {
         VStack {
             List(
                 self.$weightSets,
@@ -69,10 +71,14 @@ struct WeightsList: View {
         .background(Color(uiColor: .systemGroupedBackground))
     }
     
+    // MARK: - Initializer
+    
     init(weightSets: Binding<[WeightSet]>, isSelectable: Bool = false) {
         self._weightSets = weightSets
         self.isSelectable = isSelectable
     }
+    
+    // MARK: - Action functions
     
     func onDelete(_ perform: @escaping (WeightSet) -> Void) -> WeightsList {
         var copy = self
@@ -87,6 +93,8 @@ struct WeightsList: View {
         }
         return copy
     }
+    
+    // MARK: - Flow funcs
     
     private func editScreenLink(destination: (Binding<WeightSet>) -> some View, weightSet: Binding<WeightSet>) -> some View {
         let isEditScreenShown = Binding {

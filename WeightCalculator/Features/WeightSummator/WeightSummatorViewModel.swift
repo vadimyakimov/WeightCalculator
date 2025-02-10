@@ -10,16 +10,16 @@ import Combine
 
 class WeightSummatorViewModel: ObservableObject {
     
-    @Published var weightSet: WeightSet?
+    // MARK: - Properties
     
+    @Published var weightSet: WeightSet?
     
     @Published var weightSum: Double = 0
     @Published var selectedWeightIndices: Set<Int> = []
-//    var isWeightSetSelected: Bool {
-//        self.weightSet != nil
-//    }
     
     private var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - Initializers
     
     init(userSettings: UserSettings) {
         let realm = try? Realm()
@@ -38,14 +38,15 @@ class WeightSummatorViewModel: ObservableObject {
         }.store(in: &self.cancellables)             
     }
     
+    // MARK: - Funcs
+    
     func onTap(weights: [WeightUnit]) {
         self.weightSum = 0
         for weight in weights {
             self.weightSum += weight.value
         }
-//        self.objectWillChange.send()
     }
-
+    
     
     
 }

@@ -9,12 +9,15 @@ import SwiftUI
 
 struct WeightSummatorView: View {
     
+    // MARK: - Properties
+    
     @StateObject var viewModel: WeightSummatorViewModel
+    
+    // MARK: - body
     
     var body: some View {
         GeometryReader { proxy in
             VStack {
-                
                 Spacer()
                     .frame(maxHeight: proxy.size.height / 2)
                 
@@ -32,12 +35,12 @@ struct WeightSummatorView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        
-        
         .padding()
         .frame(maxHeight: .infinity)
         .background(Color(uiColor: .systemGroupedBackground))
     }
+    
+    // MARK: - Funcs
     
     private func formatWeightUnit(_ number: Double) -> String {
         let formatter = MeasurementFormatter()
@@ -48,7 +51,3 @@ struct WeightSummatorView: View {
         return formatter.string(from: measurment)
     }
 }
-
-//#Preview {
-//    WeightSummatorView()
-//}

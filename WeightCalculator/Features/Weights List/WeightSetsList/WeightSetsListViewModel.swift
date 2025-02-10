@@ -11,13 +11,17 @@ import RealmSwift
 @MainActor
 class WeightSetsListViewModel: ObservableObject {
     
+    // MARK: - Properties
+    
     @Published var weightSets: [WeightSet] = []
     @Published var newWeightSet: WeightSet?
     
     private var userSettings: UserSettings
     
     private var token: NotificationToken?
-        
+    
+    // MARK: - Initializers
+    
     init(weightSets: Results<WeightSet>, userSettings: UserSettings) {
         self.weightSets = Array(weightSets)
         self.userSettings = userSettings
@@ -25,35 +29,23 @@ class WeightSetsListViewModel: ObservableObject {
         self.token = self.createNotificationToken(for: weightSets)
     }
     
+    // MARK: - Funcs
+    
     func createNotificationToken(for object: Results<WeightSet>) -> NotificationToken {
         let token = object.observe { changes in
             switch changes {
-            case .update(let weightSetResults, deletions: let deletions, insertions: let insertions, modifications: let modifications):
+            case .update(let weightSetResults, deletions: let deletions, insertions: let insertions, _: _):
                 
-//                let lastSelectedWeightSetUUID = self.userSettings.selectedWeightSetUUID
-                print(deletions, insertions, modifications)
-                
-//                if !deletions.isEmpty {
                 let deletionsIndexSet = IndexSet(deletions)
                 withAnimation {
                     self.weightSets.remove(atOffsets: deletionsIndexSet)
-//                    self.userSettings.selectedWeightSetUUID = nil
                 }
-//                }
                 
                 for index in insertions {
                     let object = weightSetResults[index]
                     self.weightSets.insert(object, at: index)
                 }
                 
-                //                for index in modifications {
-                //                    if self.weightSets[index].isEmpty {
-                //                        self.remove(index)
-                //                    }
-                //                }
-                
-                //                self.objectWillChange.send()
-//                self.userSettings.selectedWeightSetUUID = lastSelectedWeightSetUUID
             default: break
             }
         }
@@ -81,28 +73,6 @@ class WeightSetsListViewModel: ObservableObject {
             realm.delete(object)
         }
     }
-    
-//    func didSelectWeightSet(withId id: UUID) {
-//        self.selectedWeightSetUUID = id
-//    }
-    
-    //    func remove(_ index: Int) {
-    //        guard let object = self.weightSets[safe: index],
-    //              !object.isInvalidated,
-    //            let realm = object.realm else { return }
-    //
-    //        Task {
-    //            do {
-    //                try await realm.asyncWrite {
-    //                    realm.delete(object.barbells)
-    //                    realm.delete(object.plates)
-    //                    realm.delete(object)
-    //                }
-    //            } catch {
-    //                fatalError()
-    //            }
-    //        }
-    //    }
     
     func createWeightSetEditViewModel(for weightSet: Binding<WeightSet>) -> WeightSetEditViewModel {
         return WeightSetEditViewModel(weightSet: weightSet)

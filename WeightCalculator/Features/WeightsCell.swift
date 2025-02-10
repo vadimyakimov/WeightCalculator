@@ -11,16 +11,20 @@ import WrappingHStack
 
 struct WeightsCell: View {
     
+    // MARK: - Properties
+    
     @Binding var weightSet: WeightSet
     @Binding var selectedWeightsIndices: Set<Int>
     
     private var onTap: (([WeightUnit]) -> ())?
     
+    // MARK: - body
+    
     var body: some View {
-                
+        
         let weights = Array(self.weightSet.barbells) + Array(self.weightSet.plates)
         let barbellsCount = self.weightSet.barbells.count
-                        
+        
         
         WrappingHStack(weights.indices, spacing: .constant(6), lineSpacing: 6) { index in
             let string = self.formatWeightUnit(weights[index])
@@ -55,6 +59,8 @@ struct WeightsCell: View {
         .padding(.vertical, 16)
     }
     
+    // MARK: - Initializers
+    
     init(weightSet: Binding<WeightSet>) {
         self._weightSet = weightSet
         self._selectedWeightsIndices = Binding(get: { [] }, set: { _ in })
@@ -64,6 +70,8 @@ struct WeightsCell: View {
         self._weightSet = weightSet
         self._selectedWeightsIndices = selectedWeightsIndices
     }
+    
+    // MARK: - Funcs
     
     func onTap(_ closure: (([WeightUnit]) -> ())?) -> WeightsCell {
         var copy = self
@@ -80,9 +88,4 @@ struct WeightsCell: View {
         return formatter.string(from: measurment)
     }
 }
-
-//#Preview {
-//    let set = WeightSet(barbells: [1.1], plates: [4.6, 2.3, 0.9, 1.6, 4.5, 2.3, 0.8])
-//    WeightsHStack(weightSet: set)
-//}
 

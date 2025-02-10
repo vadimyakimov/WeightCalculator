@@ -65,9 +65,9 @@ struct SwipeableView<Content: View>: View {
                             
                             var offset: CGFloat
                             
-                            /// Проверка, начинается ли сдвиг со стартовой точки
+                            /// Check if the offset is from the initial point
                             if self.startOffset == 0 {
-                                /// Определение направления сдвига
+                                /// Detect the offset direction
                                 if value.translation.width > 0 {
                                     offset = self.onDragStart(value.translation.width, buttonsWidth: self.leadingButtonsSize.width)
                                     self.isLeadingButtonsHidden = false
@@ -86,13 +86,13 @@ struct SwipeableView<Content: View>: View {
                         }
                         .onEnded { value in
                             
-                            /// Проверка, преодолен ли триггер для перехода к целевому положению сдвига
+                            /// Check if the trigger has been crossed for the transition to the target offset position
                             if value.translation.width > self.leadingButtonsSize.width * self.triggerRate {
                                 self.onDragEnd(value.translation.width, buttonsWidth: self.leadingButtonsSize.width)
                             } else if value.translation.width < -self.trailingButtonsSize.width * self.triggerRate {
                                 self.onDragEnd(value.translation.width, buttonsWidth: self.trailingButtonsSize.width)
                             } else {
-                                /// Если сдвиг не преодолел триггер, то возвращаем к стартовому положению сдвига
+                                /// If the trigger has not been crossed, the offset backs to the start position
                                 withAnimation {
                                     self.xOffset = self.startOffset
                                 }
@@ -138,45 +138,46 @@ struct SwipeableView<Content: View>: View {
     private func onDragStart(_ currentTranslation: CGFloat, buttonsWidth: CGFloat) -> CGFloat {
         guard buttonsWidth != 0 else { return 0 }
         
-        /// Разница между модулем сдвига и шириной кнопок. Если отрицательная, то сдвиг ещё не достиг границы кнопок
+        /// The difference between the magnitude of the offset and the button width
+        /// If it's negative, the offset hasn't reached the button bounds yet
         var offset = abs(currentTranslation) - buttonsWidth
-        /// Если положительная, то нужно замедлить только дальнейший сдвиг
+        /// If it's positive, the further offset needs to be slowed down
         offset /= offset > 0 ? self.slowingRate : 1
-        /// Возвращаем ширину кнопок к сдвигу
+        /// Add the button's width back to the offset
         offset += buttonsWidth
-        /// Направление сдвиг в нужную сторону из изначального значения сдвига
+        /// Direct the offset to the needed side from the initial offset position
         offset *= currentTranslation.sign == .minus ? -1 : 1
         
         return offset
     }
     
     private func onDragResume(_ currentTranslation: CGFloat) -> CGFloat {
-                
-        /// Проверка, тянется ли жест в том же направлении или возвращается к исходному значению
+        
+        /// Check if the gesture is continuing to pull in the same direction or returning to the initial position
         let isSameDirection = self.startOffset.sign == currentTranslation.sign
-        /// Проверка, преодолел ли сдвиг изначальное положение при возвращении
+        /// Check if the offset has crossed the initial point while returning
         let didReachInitialPoint = (abs(currentTranslation) > abs(self.startOffset)) && !isSameDirection
-        /// Значение сдвига по модулю
+        /// The magnitude of the offset
         var offset = abs(currentTranslation)
-        /// Если достигнуто изначальное положение, вычисляем остаток сдвига
+        /// If the initial position has been reached, calculate the remaining offset
         offset -= didReachInitialPoint ? abs(self.startOffset) : 0
-        /// Замедление сдвига, если жест в том же направлении или тянется за границы экрана
+        /// If the gesture is continuing to pull in the same direction or is pulling beyond the screen bounds, slow down the offset
         offset /= isSameDirection || didReachInitialPoint ? self.slowingRate : 1
-        /// Направление сдвига в нужную сторону из изначального значения сдвига
+        /// Direct the offset to the needed side the starting offset position
         offset *= currentTranslation.sign == .minus ? -1 : 1
-        /// Добавляем значение стартового сдвига
-        /// Если достигнуто изначальное положение, то отступ считаем от него
+        /// Add the start offset value
+        /// If the initial point has been reached, the offset is calculated from it
         offset += didReachInitialPoint ? 0 : self.startOffset
-                
+        
         return offset
     }
     
     private func onDragEnd(_ currentTranslation: CGFloat, buttonsWidth: CGFloat)  {
-                
-        /// Проверка, является ли это жестом возвращения к изначальному положению
+        
+        /// Check if this gesture is returning to the initial position
         let isSameDirection = self.startOffset.sign == currentTranslation.sign || self.startOffset == 0
         let isBackGesture = (abs(self.startOffset) > abs(self.xOffset)) || !isSameDirection
-        /// Определение направления сдвига
+        /// Detect the offset direction
         let offsetDirection: CGFloat = currentTranslation.sign == .minus ? -1 : 1
         let offset = isBackGesture ? 0 : buttonsWidth * offsetDirection
         
